@@ -3,54 +3,47 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
-  styleUrls: ['./board.component.scss']
+  styleUrls: ['./board.component.scss'],
 })
-export class BoardComponent implements OnInit{
-
+export class BoardComponent implements OnInit {
   squares: any[];
   xIsNext: boolean;
   winner: string;
 
-  constructor(){
+  constructor() {
     this.squares = Array(9).fill(null);
     this.xIsNext = true;
-    this.winner = "";
-  }
-  
-  ngOnInit(){
-    this.newGame();
-  }
-  
-  newGame(){
-    this.squares = Array(9).fill('');
-    this.xIsNext = true;
-    this.winner = "";
+    this.winner = '';
   }
 
-  get player(){
+  ngOnInit() {
+    this.newGame();
+  }
+
+  newGame() {
+    this.squares = Array(9).fill('');
+    this.xIsNext = true;
+    this.winner = '';
+  }
+
+  get player() {
     return this.xIsNext ? 'X' : 'O';
   }
 
-  playMove(i: number){
-    
-    if(this.squares[i] == '') {
-
+  playMove(i: number) {
+    if (this.squares[i] == '') {
       this.squares[i] = this.player;
       this.xIsNext = !this.xIsNext;
 
       this.winner = this.calculateWinner();
 
-      console.log(this.winner)
-
+      console.log(this.winner);
     } else {
-
-      alert("Square already played by " + this.squares[i]);
-
+      alert('Square already played by ' + this.squares[i]);
     }
   }
 
-  calculateWinner(){
-
+  calculateWinner() {
     let wins = [
       [0, 1, 2],
       [3, 4, 5],
@@ -61,18 +54,18 @@ export class BoardComponent implements OnInit{
       [2, 5, 8],
 
       [0, 4, 8],
-      [2, 4, 6]
-    ]
+      [2, 4, 6],
+    ];
 
     for (let i = 0; i < wins.length; i++) {
-      
-      if(this.squares[wins[i][0]] == this.squares[wins[i][1]] && this.squares[wins[i][0]] == this.squares[wins[i][2]]){
+      if (
+        this.squares[wins[i][0]] == this.squares[wins[i][1]] &&
+        this.squares[wins[i][0]] == this.squares[wins[i][2]]
+      ) {
         return this.squares[wins[i][0]];
       }
-      
     }
 
     return '';
   }
-
 }

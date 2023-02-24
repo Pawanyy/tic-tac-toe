@@ -1,10 +1,26 @@
 main {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    padding: 10px 20px 20px 20px ;
+}
+
+.board {
     display: grid;
     grid-template-columns: 200px 200px 200px;
     grid-gap: 0px;
 }
 
 app-square {
-    border: 1px solid black;
+    // border: 1px solid rgb(150, 148, 148);
     height: 200px;
+}
+
+.menu-stats {
+    display: flex;
+}
+
+.menu-stats h2 {
+    flex: 1;
 }

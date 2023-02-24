@@ -51,7 +51,13 @@ export class BoardComponent implements OnInit {
 
   playMove(i: number) {
 
+    if(this.noOfMoves == 9 && this.canPlay){
+      this.canPlay = false;
+      this.totalDraws++;
+    }
+
     if(!this.canPlay){
+      alert("Game Over! " + ((this.winner != '') ? (this.winner + ' Wins') :  'Draw'));
       return;
     }
 

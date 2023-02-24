@@ -48,8 +48,42 @@ export class BoardComponent implements OnInit{
   }
 
   calculateWinner(){
-    if(this.squares[0] == this.squares[1]){
 
+    // horizontal
+    if(this.squares[0] == this.squares[1] && this.squares[0] == this.squares[2]){
+      return this.squares[0];
+    }
+
+    
+    if(this.squares[3] == this.squares[4] && this.squares[3] == this.squares[5]){
+      return this.squares[3];
+    }
+
+    
+    if(this.squares[6] == this.squares[7] && this.squares[6] == this.squares[8]){
+      return this.squares[6];
+    }
+
+    // vertical
+    if(this.squares[0] == this.squares[3] && this.squares[0] == this.squares[6]){
+      return this.squares[0];
+    }
+    
+    if(this.squares[1] == this.squares[4] && this.squares[1] == this.squares[7]){
+      return this.squares[1];
+    }
+    
+    if(this.squares[2] == this.squares[5] && this.squares[2] == this.squares[8]){
+      return this.squares[2];
+    }
+
+    // Digonal
+    if(this.squares[0] == this.squares[4] && this.squares[0] == this.squares[8]){
+      return this.squares[0];
+    }
+
+    if(this.squares[2] == this.squares[4] && this.squares[2] == this.squares[6]){
+      return this.squares[2];
     }
 
     return '';

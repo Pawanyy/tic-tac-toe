@@ -40,6 +40,8 @@ export class BoardComponent implements OnInit{
 
       this.winner = this.calculateWinner();
 
+      console.log(this.winner)
+
     } else {
 
       alert("Square already played by " + this.squares[i]);
@@ -49,41 +51,25 @@ export class BoardComponent implements OnInit{
 
   calculateWinner(){
 
-    // horizontal
-    if(this.squares[0] == this.squares[1] && this.squares[0] == this.squares[2]){
-      return this.squares[0];
-    }
+    let wins = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
 
-    
-    if(this.squares[3] == this.squares[4] && this.squares[3] == this.squares[5]){
-      return this.squares[3];
-    }
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
 
-    
-    if(this.squares[6] == this.squares[7] && this.squares[6] == this.squares[8]){
-      return this.squares[6];
-    }
+      [0, 4, 8],
+      [2, 4, 6]
+    ]
 
-    // vertical
-    if(this.squares[0] == this.squares[3] && this.squares[0] == this.squares[6]){
-      return this.squares[0];
-    }
-    
-    if(this.squares[1] == this.squares[4] && this.squares[1] == this.squares[7]){
-      return this.squares[1];
-    }
-    
-    if(this.squares[2] == this.squares[5] && this.squares[2] == this.squares[8]){
-      return this.squares[2];
-    }
-
-    // Digonal
-    if(this.squares[0] == this.squares[4] && this.squares[0] == this.squares[8]){
-      return this.squares[0];
-    }
-
-    if(this.squares[2] == this.squares[4] && this.squares[2] == this.squares[6]){
-      return this.squares[2];
+    for (let i = 0; i < wins.length; i++) {
+      
+      if(this.squares[wins[i][0]] == this.squares[wins[i][1]] && this.squares[wins[i][0]] == this.squares[wins[i][2]]){
+        return this.squares[wins[i][0]];
+      }
+      
     }
 
     return '';

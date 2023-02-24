@@ -1,18 +1,21 @@
 <main>
-    <h1>Current Player: {{ player }}</h1>
+    
+    <div class="menu-stats">
+        <h1>Current Player: {{ player }}</h1>
+        <div class="stats-win">
+            <h2>X wins: {{ totalWinsX }}</h2>
+            <h2>O wins: {{ totalWinsO }}</h2>
+        </div>
+    </div>
 
-    <button (click)="newGame()" mat-raised-button color="primary">New Game</button>
-    <button mat-raised-button color="warn">Reset</button>
+    <button mat-raised-button color="primary" (click)="newGame()">New Game</button>
+    <button mat-raised-button color="warn" (click)="Reset()">Reset</button>
 
     <h2 *ngIf="winner">
         Player {{winner}} Won the Game!
     </h2>
     
     <mat-divider></mat-divider>
-    <div class="menu-stats">
-        <h2>X wins: </h2>
-        <h2>O wins: </h2>
-    </div>
 
     <div class="board">
         <app-square *ngFor="let val of squares; let i = index;"

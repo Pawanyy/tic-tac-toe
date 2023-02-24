@@ -8,12 +8,22 @@ import { Component, OnInit } from '@angular/core';
 export class BoardComponent implements OnInit {
   squares: any[];
   xIsNext: boolean;
+  canPlay: boolean;
   winner: string;
+  totalWinsX: number;
+  totalWinsO: number;
+  totalDraws: number;
+  noOfMoves: number;
 
   constructor() {
     this.squares = Array(9).fill(null);
     this.xIsNext = true;
+    this.canPlay = true;
     this.winner = '';
+    this.totalWinsX = 0;
+    this.totalWinsO = 0;
+    this.totalDraws = 0;
+    this.noOfMoves = 0;
   }
 
   ngOnInit() {
@@ -23,7 +33,16 @@ export class BoardComponent implements OnInit {
   newGame() {
     this.squares = Array(9).fill('');
     this.xIsNext = true;
+    this.canPlay = true;
     this.winner = '';
+    this.noOfMoves = 0;
+  }
+  
+  Reset() {
+    this.totalWinsO = 0;
+    this.totalWinsX = 0;
+    this.totalDraws = 0;
+    this.newGame();
   }
 
   get player() {
@@ -31,9 +50,16 @@ export class BoardComponent implements OnInit {
   }
 
   playMove(i: number) {
+
+    if(!this.canPlay){
+      return;
+    }
+
     if (this.squares[i] == '') {
       this.squares[i] = this.player;
       this.xIsNext = !this.xIsNext;
+
+      this.noOfMoves++;
 
       this.winner = this.calculateWinner();
 
@@ -41,6 +67,12 @@ export class BoardComponent implements OnInit {
     } else {
       alert('Square already played by ' + this.squares[i]);
     }
+
+    if(this.winner != '' && this.canPlay){
+      (this.winner == 'X') ? this.totalWinsX++ : this.totalWinsO++;
+      this.canPlay = false;
+    }
+
   }
 
   calculateWinner() {

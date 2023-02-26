@@ -1,22 +1,23 @@
 <main>
     
     <div class="menu-stats">
-        <h1>Current Player: {{ player }} M: {{noOfMoves}}</h1>
+        <h1>Current Player: {{ player }} | M: {{ noOfMoves }}</h1>
         <div class="stats-win">
-            <h2>X wins: {{ totalWinsX }}</h2>
-            <h2>O wins: {{ totalWinsO }}</h2>
-            <h2>&nbsp;Draws: {{ totalDraws }}</h2>
+            <h6>X wins: {{ totalWinsX }}</h6>
+            <h6>O wins: {{ totalWinsO }}</h6>
+            <h6>&nbsp;Draws: {{ totalDraws }}</h6>
         </div>
     </div>
 
     <button mat-raised-button color="primary" (click)="newGame()">New Game</button>
+    &nbsp;
     <button mat-raised-button color="warn" (click)="Reset()">Reset</button>
 
-    <h2 *ngIf="winner">
+    <h2 class="alert-success" *ngIf="winner">
         Player {{winner}} Won the Game!
     </h2>
     
-    <mat-divider></mat-divider>
+    <mat-divider style="margin: 10px 0 10px 0;"></mat-divider>
 
     <div class="board">
         <app-square *ngFor="let val of squares; let i = index;"

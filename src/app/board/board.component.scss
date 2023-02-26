@@ -8,13 +8,13 @@ main {
 
 .board {
     display: grid;
-    grid-template-columns: 200px 200px 200px;
+    grid-template-columns: 150px 150px 150px;
     grid-gap: 5px;
 }
 
 app-square {
     // border: 1px solid rgb(150, 148, 148);
-    height: 200px;
+    height: 150px;
 }
 
 .menu-stats {
